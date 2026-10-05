@@ -1,44 +1,30 @@
 # Computer Networks Private Service Platform
 
-A private LAN-based networking project demonstrating:
-
-- Private DNS using dnsmasq
-- `.test` domain resolution
-- nginx reverse proxy and load balancing
-- REST backends
-- HTTPS/TLS
-- HTTP caching
-- Wireshark packet-level evidence
+A private LAN-based service platform demonstrating private DNS, reverse proxy/load balancing, HTTPS/TLS, HTTP caching, and packet-level network analysis.
 
 ## Project Status
 
-The repository is currently being prepared on the available Mac.
+Phase 1 implementation and evidence have been completed and tested on a 3-Mac private LAN.
 
-Backend B and additional machine-specific configuration will be added when the other Macs are available.
+## Architecture
 
-## Planned Architecture
+| Machine | IP Address | Role |
+|---|---|---|
+| Mac 1 | 10.7.26.144 | DNS + Client |
+| Mac 2 | 10.7.6.173 | Nginx + HTTPS/TLS + Load Balancer + Backend A |
+| Mac 3 | 10.7.9.59 | Backend B + Client |
 
-| Machine | Role |
-|---|---|
-| Mac 1 | DNS + Client |
-| Mac 2 | nginx + HTTPS + Load Balancer + Backend A |
-| Mac 3 | Backend B + Client |
+Subnet mask: `255.255.224.0`
 
-The final service names are:
+Project domain names:
 
 - `app.team1.test`
 - `api.team1.test`
 
-## Services
+## Private DNS
 
-### Backend A
-
-Backend A provides:
-
-- `GET /`
-- `GET /api/status`
-
-Expected response header:
+Mac 1 runs dnsmasq.
 
 ```text
-X-Backend: A
+app.team1.test -> 10.7.6.173
+api.team1.test -> 10.7.6.173
