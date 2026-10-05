@@ -1,29 +1,33 @@
 # IP and Service Table
 
-## Current Network Information
+## Network Information
 
-| Machine | Role | IP Address | Status |
+| Machine | Role | IP Address | Subnet Mask | Status |
+|---|---|---|---|---|
+| Mac 1 | DNS + Client | `10.7.26.144` | `255.255.224.0` | Active |
+| Mac 2 | Nginx + HTTPS + Load Balancer + Backend A | `10.7.6.173` | `255.255.224.0` | Active |
+| Mac 3 | Backend B + Client | `10.7.9.59` | `255.255.224.0` | Active |
+
+## Services
+
+| Service | Machine | Address / Port | Protocol |
 |---|---|---|---|
-| Mac 1 | DNS + Client | `10.7.26.144` | Available |
-| Mac 2 | nginx + HTTPS + Load Balancer + Backend A | To be confirmed | Not currently available |
-| Mac 3 | Backend B + Client | To be confirmed | Not currently available |
+| Private DNS | Mac 1 | `10.7.26.144:53` | UDP/TCP |
+| HTTP (redirect to HTTPS) | Mac 2 | `10.7.6.173:80` | TCP |
+| HTTPS / Nginx | Mac 2 | `10.7.6.173:443` | TCP |
+| Backend A | Mac 2 | `10.7.6.173:3001` | TCP |
+| Backend B | Mac 3 | `10.7.9.59:3002` | TCP |
 
-## Planned Services
+## Domain Names
 
-| Service | Address / Port |
-|---|---|
-| Application | `app.team1.test` |
-| API | `api.team1.test` |
-| DNS | UDP/TCP `53` |
-| HTTP | TCP `80` |
-| HTTPS | TCP `443` |
-| Backend A | TCP `3001` |
-| Backend B | TCP `3002` |
+| Domain | Resolves to | Backend |
+|---|---|---|
+| `app.team1.test` | `10.7.6.173` | Nginx (round-robin → Backend A / Backend B) |
+| `api.team1.test` | `10.7.6.173` | Nginx (round-robin → Backend A / Backend B) |
 
-## DNS Mapping
-
-Mac 1 will provide DNS resolution for:
+## DNS Mapping (dnsmasq on Mac 1)
 
 ```text
-app.team1.test -> Mac 2
-api.team1.test -> Mac 2
+app.team1.test -> 10.7.6.173
+api.team1.test -> 10.7.6.173
+```

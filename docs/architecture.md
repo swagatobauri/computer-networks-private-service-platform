@@ -11,7 +11,6 @@ The system provides:
 - HTTPS/TLS termination
 - HTTP caching using Cache-Control and ETag
 - Wireshark-based DNS, TCP and TLS packet analysis
-- Backend failure/resilience testing
 
 All services operate on the private LAN and use the `.test` namespace.
 

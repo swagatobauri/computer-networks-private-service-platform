@@ -28,3 +28,17 @@ Mac 1 runs dnsmasq.
 ```text
 app.team1.test -> 10.7.6.173
 api.team1.test -> 10.7.6.173
+```
+
+## Repository Structure
+
+```
+dns/            dnsmasq configuration (Mac 1)
+nginx/          Nginx configuration (Mac 2)
+backend-a/      Backend A Python server (Mac 2, port 3001)
+backend-b/      Backend B Python server (Mac 3, port 3002)
+tls/            TLS setup documentation
+wireshark/      Wireshark packet analysis
+docs/           Architecture, IP table, and demo evidence
+evidence/       Screenshots and captures from live testing
+```
