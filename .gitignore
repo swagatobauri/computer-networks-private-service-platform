@@ -1,0 +1,40 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.backup
+*.bak
+*.swp
+*~
+
+# TLS / certificates / private keys
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# nginx generated files
+nginx/logs/
+nginx/*.log
+
+# Temporary files
+tmp/
+temp/
+
+# IDE / editor
+.vscode/
+.idea/
